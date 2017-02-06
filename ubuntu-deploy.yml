@@ -1,0 +1,8 @@
+---
+- name: Deploy for Ubuntu
+  hosts: localhost
+  sudo: yes
+  roles:
+    - { role: common, tags: common }
+#    - { role: postgres, tags: postgres }
+#    - { role: php, tags: php }

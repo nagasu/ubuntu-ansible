@@ -1,0 +1,25 @@
+- hosts: localhost
+  sudo: yes
+  tasks:
+#    - name: "package upgrade"
+#      apt:
+#        upgrade: dist
+#        update_cache: yes
+
+    - name: "auto update"
+      apt:
+        name: unattended-upgrades
+
+    - name: "package install"
+      apt:
+        name={{item}} state="present"
+      with_items:
+        - git
+
+    - name: Get hardware information
+      shell: uname -r
+      register: result
+
+    - name: Debug 
+      debug:
+        var: result

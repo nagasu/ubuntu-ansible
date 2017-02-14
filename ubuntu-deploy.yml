@@ -6,8 +6,10 @@
   become_user: root
   roles:
 #    - { role: common, tags: common }
+    - { role: ufw, tags: ufw }
 #    - { role: git, tags: git }
 #    - { role: subversion, tags: subversion }
     - { role: vim, tags: vim }
 #    - { role: postgres, tags: postgres }
-#    - { role: php, tags: php }
+    - { role: apache2, tags: apache2 }
+    - { role: php, tags: php }

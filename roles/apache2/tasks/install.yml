@@ -1,0 +1,8 @@
+---
+## 1.apache2インストール
+ - name: "install / Install required packages"
+   apt:
+     name: "{{ item }}"
+     state: present
+     update_cache: yes
+   with_items: "{{ apache_packages }}"

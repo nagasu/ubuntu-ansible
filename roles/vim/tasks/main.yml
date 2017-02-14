@@ -1,0 +1,31 @@
+---
+## 1.vimインストール
+- name: install / Install packages
+  apt:
+    name: vim
+    state: present
+
+## 2.カラースキーマ配置
+- name: configure / Create color scheme directory
+  file:
+    path: "/home/{{ ansible_env.SUDO_USER }}/.vim/colors"
+    state: directory
+    owner: nagasu
+    group: nagasu
+
+- name: configure / Setup color scheme
+  copy:
+    src: molokai.vim
+    dest: "/home/{{ ansible_env.SUDO_USER }}/.vim/colors/molokai.vim"
+    owner: nagasu
+    group: nagasu
+
+## 3.vimrc配置
+- name: configure / Setup .vimrc
+  copy:
+    src: .vimrc
+    dest: "/home/{{ ansible_env.SUDO_USER }}/.vimrc"
+    owner: nagasu
+    group: nagasu
+
+

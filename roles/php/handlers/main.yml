@@ -1,0 +1,6 @@
+---
+## 1.httpdサービス再起動
+- name: restart httpd service
+  systemd:
+    name: httpd
+    state: restarted

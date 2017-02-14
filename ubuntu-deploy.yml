@@ -8,6 +8,10 @@
     - { role: common, tags: common }
     - { role: ansible, tags: ansible }
     - { role: git, tags: git }
+    - { role: subversion, tags: subversion }
+    - { role: ufw, tags: ufw }
+    - { role: vim, tags: vim }
+    - { role: postgres, tags: postgres }
+    - { role: apache2, tags: apache2 }
+    - { role: php, tags: php }
     - { role: albert, tags: albert }
-#    - { role: postgres, tags: postgres }
-#    - { role: php, tags: php }

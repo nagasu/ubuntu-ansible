@@ -1,0 +1,41 @@
+---
+## 1.ufwインストール
+- name: install / Install packages
+  apt:
+    name: ufw
+    state: present
+    update_cache: yes
+
+## 2.起動設定
+- name: configure /
+  ufw:
+    state: enabled
+    policy: deny
+
+## 3.ロギング設定
+- name: configure /
+  ufw:
+    logging: low
+
+## 4. ipv6無効化
+- name: configure / ipv6 disalbed
+  ini_file:
+    dest: /etc/default/ufw
+    section: null
+    option: IPV6
+    value: "no"
+    no_extra_spaces: yes
+
+## 5.OpenSSH許可
+- name: configure / allow OpenSSH
+  ufw:
+    rule: allow
+    name: OpenSSH
+
+## 6.ssh許可
+- name: configure / allow ssh
+  ufw:
+    rule: allow
+    port: ssh
+
+

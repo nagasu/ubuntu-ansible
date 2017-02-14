@@ -1,8 +1,13 @@
 ---
 - name: Deploy for Ubuntu
-  hosts: localhost
-  sudo: yes
+  hosts: 127.0.0.1
+  connection: local
+  become: true
+  become_user: root
   roles:
     - { role: common, tags: common }
+    - { role: ansible, tags: ansible }
+    - { role: git, tags: git }
+    - { role: albert, tags: albert }
 #    - { role: postgres, tags: postgres }
 #    - { role: php, tags: php }

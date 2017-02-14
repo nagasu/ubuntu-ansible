@@ -1,0 +1,6 @@
+---
+- name: configure / Setup ansible configuration file
+  copy:
+    src: ansible.cfg
+    dest: ~/.ansible.cfg
+    state: present

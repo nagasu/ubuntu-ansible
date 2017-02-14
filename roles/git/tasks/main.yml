@@ -1,6 +1,6 @@
 ---
-- name: "package install"
+- name: "install / package install"
   apt:
-    name={{item}} state="present"
+    name={{item}} state="present" update_cache=yes
   with_items:
     - git

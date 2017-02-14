@@ -1,5 +1,5 @@
 ---
-- name: "package install"
+- name: "install / Install packages"
   apt:
     name={{item}} state="present"
   with_items:

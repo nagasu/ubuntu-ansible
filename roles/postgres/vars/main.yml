@@ -1,0 +1,10 @@
+---
+postgres_admin_user: postgres
+postgres_admin_password: postgres
+postgres_service_port: 5432
+
+postgres_ufw_service:
+  - {port: postgresql, proto: tcp}
+
+postgres_packages:
+  - postgresql-9.5

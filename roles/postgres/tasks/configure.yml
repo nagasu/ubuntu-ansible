@@ -1,0 +1,39 @@
+---
+## 1.既に作成済みかのチェック
+- name: configure / Check initialized
+  stat: path=/var/lib/postgresql/9.5/main/PG_VERSION
+  register: db_initialized
+
+## 2.postgresユーザパスワード設定
+- name: configure / postgres user
+  user:
+    name: postgres
+    password: "{{ postgres_admin_password | password_hash('sha512') }}"
+  when: not db_initialized.stat.exists
+
+## 3.postgresql.confの配備
+- name: configure / Setup postgresql.conf file
+  template:
+    src: postgresql.conf.j2
+    dest: /etc/postgresql/9.5/main/postgresql.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+  notify: restart postgres service
+
+## 4.pg_hba.confの配備
+- name: configure / Setup pg_hba.conf file
+  template:
+    src: pg_hba.conf.j2
+    dest: /etc/postgresql/9.5/main/pg_hba.conf
+    owner: postgres
+    group: postgres
+    mode: 0644
+  notify: restart postgres service
+
+## 5.postgres起動
+- name: configure / Start PostgreSQL
+  systemd:
+    name: postgresql
+    state: started
+    enabled: yes

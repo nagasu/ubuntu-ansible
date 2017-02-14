@@ -1,0 +1,8 @@
+---
+## 1.ufwのポート許可
+- name: check_install / Allow service for ufw
+  ufw:
+    rule: allow
+    port: "{{ item.port }}"
+    proto: "{{ item.proto }}"
+  with_items: "{{ postgres_ufw_service }}"

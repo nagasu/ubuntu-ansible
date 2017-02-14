@@ -1,0 +1,6 @@
+---
+## 1.postgresサービス再起動
+- name: restart postgres service
+  systemd:
+    name: postgresql
+    state: restarted

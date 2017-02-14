@@ -1,0 +1,8 @@
+---
+## 1.postgresインストール
+- name: install / Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ postgres_packages }}"

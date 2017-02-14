@@ -1,0 +1,4 @@
+---
+- include: roles/postgres/tasks/check_install.yml
+- include: roles/postgres/tasks/install.yml
+- include: roles/postgres/tasks/configure.yml

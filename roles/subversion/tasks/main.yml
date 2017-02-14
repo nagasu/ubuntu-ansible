@@ -1,0 +1,6 @@
+---
+## 1.subversionインストール
+ - name: "install / Install packages"
+   apt:
+     name: subversion
+     state: present

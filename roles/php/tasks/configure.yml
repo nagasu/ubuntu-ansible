@@ -7,11 +7,4 @@
     owner: root
     group: root
     mode: 0644
-  notify: restart httpd service
-
-## 2.apache用設定ファイルの配備
-- name: configure / Setup apache configuration file
-  copy:
-    src: php.conf
-    dest: /etc/httpd/conf.d/php.conf
-  notify: restart httpd service
+  notify: restart apache2 service

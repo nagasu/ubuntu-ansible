@@ -1,0 +1,4 @@
+---
+- include: roles/apache2/tasks/check_install.yml
+- include: roles/apache2/tasks/install.yml
+- include: roles/apache2/tasks/configure.yml

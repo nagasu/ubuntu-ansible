@@ -1,0 +1,52 @@
+---
+## 1.apache設定の配備
+- name: configure / Setup apache2 configuration file
+  template:
+    src: apache2.conf.j2
+    dest: /etc/apache2/apache2.conf
+  notify: restart apache2 service
+
+## 2.port設定の配備
+- name: configure / Setup port configuration file
+  template:
+    src: ports.conf.j2
+    dest: /etc/apache2/ports.conf
+  notify: restart apache2 service
+
+## 3.security設定の配備
+- name: configure / Setup security configuration file
+  template:
+    src: security.conf.j2
+    dest: /etc/apache2/conf-available/security.conf
+  notify: restart apache2 service
+
+## 4.dir.conf設定の配備
+- name: configure / Setup dir.conf configuration file
+  copy:
+    src: dir.conf
+    dest: /etc/apache2/mods-available/dir.conf
+  notify: restart apache2 service
+
+## 5.logrotate設定の配備
+- name: configure / Setup logrotate configuration file
+  copy:
+    src: logrotate_apache2
+    dest: /etc/logrotate.d/apache2
+    owner: root
+    group: root
+    mode: 0644
+
+## 6.apache2起動
+- name: configure / Start apache2 service
+  systemd:
+    name: apache2
+    state: started
+    enabled: yes
+
+## 7.apache2起動確認
+- name: configure / Wait for apache2 restart
+  wait_for:
+    host: "{{ ansible_default_ipv4.address }}"
+    port: "{{ http_service_port }}"
+    delay: 3
+    timeout: 30

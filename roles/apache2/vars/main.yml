@@ -1,0 +1,18 @@
+---
+http_service_port: 80
+https_service_port: 443
+
+http_ufw_service:
+  - {port: http, proto: tcp}
+  - {port: https, proto: tcp}
+
+document_root: "/www/htdocs"
+
+apache_packages:
+  - apache2
+  - w3m
+
+ssl_path: "/etc/httpd/conf.d/ssl"
+
+ssl_active_year: "2017"
+ssl_active_year_path: "{{ ssl_path }}/{{ ssl_active_year }}"

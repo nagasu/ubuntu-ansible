@@ -1,0 +1,19 @@
+---
+## 1.リポジトリの追加
+- name: install / Add Repository
+  apt_repository:
+    repo: ppa:ondrej/php
+    state: present
+
+## 2.phpインストール
+- name: install / Install required packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items: "{{ php_packages }}"
+
+## 3.composerインストール
+- name: install / Install composer
+  shell: >
+    curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin && mv /usr/local/bin/composer.phar /usr/local/bin/composer creates=/usr/local/bin/composer

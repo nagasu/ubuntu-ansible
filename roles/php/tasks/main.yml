@@ -1,0 +1,4 @@
+---
+#- include: roles/php/tasks/check_install.yml
+- include: roles/php/tasks/install.yml
+- include: roles/php/tasks/configure.yml

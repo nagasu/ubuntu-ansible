@@ -1,0 +1,11 @@
+---
+- name: "install / Add Repository"
+  apt_repository:
+    repo: ppa:nilarimogard/webupd8
+    state: present
+
+- name: "install / package install"
+  apt:
+    name={{item}} state="present" update_cache=yes
+  with_items:
+    - albert

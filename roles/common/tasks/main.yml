@@ -23,3 +23,21 @@
 #    name: unattended-upgrades
 
 
+## alias
+- block:
+  - name: configure / Add Alias ll
+    lineinfile:
+      dest: ~/.bashrc
+      line: "alias ll='ls -la --color=auto'"
+
+  - name: configure / Add Alias df
+    lineinfile:
+      dest: ~/.bashrc
+      line: "alias df='df -h'"
+
+  - name: configure / source
+    shell: source ~/.bashrc executable=/bin/bash
+
+## ホームディレクトリ名をローマ字に
+- name: configure / Set Home Dirctory Name
+  shell: LANG=C xdg-user-dirs-gtk-update

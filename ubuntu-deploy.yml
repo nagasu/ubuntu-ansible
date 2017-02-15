@@ -11,6 +11,7 @@
     - { role: subversion, tags: subversion }
     - { role: ufw, tags: ufw }
     - { role: vim, tags: vim }
+    - { role: zsh, tags: zsh }
     - { role: postgres, tags: postgres }
     - { role: apache2, tags: apache2 }
     - { role: php, tags: php }

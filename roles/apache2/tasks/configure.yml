@@ -29,8 +29,8 @@
 
 ## 5.fqdn.conf設定の配備
 - name: configure / Setup fqdn.conf configuration file
-  copy:
-    src: fqdn.conf
+  template:
+    src: fqdn.conf.j2
     dest: /etc/apache2/conf-available/fqdn.conf
   notify: restart apache2 service
 

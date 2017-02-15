@@ -1,5 +1,5 @@
 127.0.0.1	localhost
-127.0.0.1	nagasu-pc
+127.0.0.1	"{{ ansible_env.SUDO_USER }}"-pc
 127.0.0.1	local.www.across-yoyaku.jp
 127.0.0.1	local.signage.across-yoyaku.jp
 

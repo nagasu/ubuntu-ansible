@@ -1,0 +1,23 @@
+---
+## 1.zshインストール
+- name: install / Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - zsh
+    - xsel
+
+## 2.zshrc配置
+- name: configure / Setup .zshrc
+  copy:
+    src: .zshrc
+    dest: "/home/{{ ansible_env.SUDO_USER }}/.zshrc"
+    owner: "{{ ansible_env.SUDO_USER }}"
+    group: "{{ ansible_env.SUDO_USER }}"
+
+## 3.反映
+- name: configure / Source .zshrc
+  shell: "source /home/{{ ansible_env.SUDO_USER }}/.zshrc executable=/bin/bash"
+
+

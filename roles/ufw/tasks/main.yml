@@ -38,4 +38,17 @@
     rule: allow
     port: ssh
 
+## 7.imap2許可
+- name: configure / allow imap2
+  ufw:
+    rule: allow
+    port: imap2
+    proto: tcp
+
+## 8.submission(smtp)許可
+- name: configure / allow smpt
+  ufw:
+    rule: allow
+    port: submission
+    proto: tcp
 

@@ -1,0 +1,15 @@
+## 1.vhost設定の配備
+- name: configure / Setup vhost configuration file
+  template:
+    src: acros.conf.j2
+    dest: /etc/apache2/sites-available/acros.conf
+
+## 2.vhost設定の反映
+- name: configure / Enable vhost configuration file
+  command: a2ensite acros
+
+## 3.apache2サービス再起動
+- name: restart apache2 service
+  systemd:
+    name: apache2
+    state: restarted

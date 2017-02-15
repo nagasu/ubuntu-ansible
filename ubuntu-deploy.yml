@@ -15,3 +15,4 @@
     - { role: apache2, tags: apache2 }
     - { role: php, tags: php }
     - { role: albert, tags: albert }
+    - { role: acros, tags: acros }

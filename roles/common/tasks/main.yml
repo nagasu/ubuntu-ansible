@@ -22,6 +22,11 @@
 #  apt:
 #    name: unattended-upgrades
 
+## hosts設定
+- name: configure / Setup hosts
+  copy:
+    src: hosts
+    dest: /etc/hosts
 
 ## alias
 - block:
@@ -41,3 +46,4 @@
 ## ホームディレクトリ名をローマ字に
 - name: configure / Set Home Dirctory Name
   shell: LANG=C xdg-user-dirs-gtk-update
+

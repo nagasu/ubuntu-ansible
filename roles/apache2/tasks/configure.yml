@@ -27,7 +27,18 @@
     dest: /etc/apache2/mods-available/dir.conf
   notify: restart apache2 service
 
-## 5.logrotate設定の配備
+## 5.fqdn.conf設定の配備
+- name: configure / Setup fqdn.conf configuration file
+  copy:
+    src: fqdn.conf
+    dest: /etc/apache2/conf-available/fqdn.conf
+  notify: restart apache2 service
+
+## 6.fqdn.conf設定の有効化
+- name: configure / Enable fqdn.conf configuration file
+  command: a2enconf fqdn
+
+## 7.logrotate設定の配備
 - name: configure / Setup logrotate configuration file
   copy:
     src: logrotate_apache2
@@ -36,14 +47,14 @@
     group: root
     mode: 0644
 
-## 6.apache2起動
+## 8.apache2起動
 - name: configure / Start apache2 service
   systemd:
     name: apache2
     state: started
     enabled: yes
 
-## 7.apache2起動確認
+## 9.apache2起動確認
 - name: configure / Wait for apache2 restart
   wait_for:
     host: "{{ ansible_default_ipv4.address }}"

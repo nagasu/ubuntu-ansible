@@ -8,3 +8,13 @@
     group: root
     mode: 0644
   notify: restart apache2 service
+
+## 2.apache2 - php設定の配備
+- name: configure / Setup apache2 php configuration file
+  copy:
+    src: php7.1.conf
+    dest: /etc/apache2/mods-available/php7.1.conf
+    owner: root
+    group: root
+    mode: 0644
+  notify: restart apache2 service

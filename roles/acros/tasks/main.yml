@@ -1,14 +1,32 @@
-## 1.vhost設定の配備
+## 1.ソース配置
+#- name: deploy / git clone/pull
+#  git:
+#    repo: git@github.com:nagasu/ibaraki.yuki-acros.git
+#    dest: /home/{{ ansible_env.SUDO_USER }}/www/htdocs/ibaraki.yuki-acros.git
+#    version: master
+#    force: yes
+#    update: yes
+#    accept_hostkey: true
+#  register: git_clon_pull_result
+
+## 2.PHPライブラリダウンロード
+#- name: deploy / composer install
+#  composer:
+#    command: install
+#    working_dir: /home/{{ ansible_env.SUDO_USER }}/www/htdocs/ibaraki.yuki-acros.git
+#  when: git_clon_pull_result.changed == true
+
+## 2.vhost設定の配備
 - name: configure / Setup vhost configuration file
   template:
     src: acros.conf.j2
     dest: /etc/apache2/sites-available/acros.conf
 
-## 2.vhost設定の反映
+## 3.vhost設定の反映
 - name: configure / Enable vhost configuration file
   command: a2ensite acros
 
-## 3.apache2サービス再起動
+## 4.apache2サービス再起動
 - name: restart apache2 service
   systemd:
     name: apache2

@@ -16,4 +16,5 @@
     - { role: apache2, tags: apache2 }
     - { role: php, tags: php }
     - { role: albert, tags: albert }
+    - { role: playonlinux, tags: playonlinux }
     - { role: acros, tags: acros }

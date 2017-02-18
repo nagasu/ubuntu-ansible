@@ -1,0 +1,15 @@
+---
+- name: install / Add apt-key
+  shell: wget -q "http://deb.playonlinux.com/public.gpg" -O- | sudo apt-key add -
+
+- name: install / Install playonlinux.list
+  shell: wget http://deb.playonlinux.com/playonlinux_precise.list -O /etc/apt/sources.list.d/playonlinux.list
+
+## 1.必要パッケージインストール
+- name: install / Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - playonlinux

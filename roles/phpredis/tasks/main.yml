@@ -1,0 +1,36 @@
+---
+## 1.パッケージインストール
+- name: install / git clone/pull
+  git:
+    repo: https://github.com/phpredis/phpredis.git
+    dest: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+    version: master
+    force: yes
+    update: yes
+    accept_hostkey: true
+
+- name: configure / phpredis
+  command: phpredis
+  chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+
+- name: configure / phpize
+  command: phpize
+  chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+
+- name: configure / configure
+  command: ./configure
+  chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+
+- name: configure / make all
+  make:
+    chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+    target: all
+    params:
+      prefix: /usr/local
+
+- name: configure / make install
+  make:
+    chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
+    target: install
+    params:
+      prefix: /usr/local

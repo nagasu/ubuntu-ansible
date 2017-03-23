@@ -1,12 +1,13 @@
 ---
-- name: install / git clone/pull
+## 1.パッケージインストール
+- name: install / git clone or pull
   git:
     repo: https://github.com/phpredis/phpredis.git
     dest: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
     version: php7
-    force: yes
     update: yes
     accept_hostkey: true
+    depth: 1
 
 - name: configure / phpize
   command: phpize
@@ -22,12 +23,31 @@
   make:
     chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
     target: all
-    params:
-      prefix: /usr/local
 
 - name: configure / make install
   make:
     chdir: /home/{{ ansible_env.SUDO_USER }}/tmp/phpredis
     target: install
-    params:
-      prefix: /usr/local
+
+- name: configure / copy
+  copy:
+    src: redis.ini
+    dest: /etc/php/7.1/mods-available/redis.ini
+    force: yes
+
+- name: configure / link
+  file:
+    src: /etc/php/7.1/mods-available/redis.ini
+    dest: /etc/php/7.1/apache2/conf.d/redis.ini
+    state: link
+
+- name: configure / link
+  file:
+    src: /etc/php/7.1/mods-available/redis.ini
+    dest: /etc/php/7.1/cli/conf.d/redis.ini
+    state: link
+
+- name: restart apache2 service
+  systemd:
+    name: apache2
+    state: restarted

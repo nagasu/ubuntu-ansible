@@ -1,6 +1,6 @@
 ---
-## 1.httpdサービス再起動
-- name: restart httpd service
+## 1.apache2サービス再起動
+- name: restart apache2 service
   systemd:
-    name: httpd
+    name: apache2
     state: restarted

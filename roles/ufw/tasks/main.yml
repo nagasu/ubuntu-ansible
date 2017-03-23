@@ -26,26 +26,20 @@
     value: "no"
     no_extra_spaces: yes
 
-## 5.OpenSSH許可
-- name: configure / allow OpenSSH
-  ufw:
-    rule: allow
-    name: OpenSSH
-
-## 6.ssh許可
+## 5.ssh許可
 - name: configure / allow ssh
   ufw:
     rule: allow
     port: ssh
 
-## 7.imap2許可
+## 6.imap2許可
 - name: configure / allow imap2
   ufw:
     rule: allow
     port: imap2
     proto: tcp
 
-## 8.submission(smtp)許可
+## 7.submission(smtp)許可
 - name: configure / allow smpt
   ufw:
     rule: allow

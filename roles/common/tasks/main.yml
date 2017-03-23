@@ -47,3 +47,11 @@
 - name: configure / Set Home Dirctory Name
   shell: LANG=C xdg-user-dirs-gtk-update
 
+## exFAT
+- name: install / exfat packages
+  apt:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - exfat-fuse
+    - exfat-utils

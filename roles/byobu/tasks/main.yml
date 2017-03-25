@@ -1,0 +1,12 @@
+---
+## 1.必要パッケージインストール
+- name: install / Install packages
+  apt:
+    name: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - byobu
+
+- name: configure / Enable login shell
+  command: byobu-enable

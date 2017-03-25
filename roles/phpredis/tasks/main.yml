@@ -1,5 +1,4 @@
 ---
-## 1.パッケージインストール
 - name: install / git clone or pull
   git:
     repo: https://github.com/phpredis/phpredis.git

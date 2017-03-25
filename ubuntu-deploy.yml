@@ -19,4 +19,4 @@
     - { role: phpredis, tags: phpredis }
     - { role: albert, tags: albert }
     - { role: playonlinux, tags: playonlinux }
-    - { role: acros, tags: acros }
+    - { role: laravel, tags: laravel }

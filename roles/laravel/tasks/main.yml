@@ -1,0 +1,18 @@
+---
+## インストール状態
+- name: stat / Laravel Installer
+  stat:
+    path: ~/.composer/vendor/bin/laravel
+  register: laravel
+
+## 1.インストーラー
+- name: install / Laravel Installer
+  command: composer global require "laravel/installer"
+  when: laravel.stat.exists == false
+
+## 2.環境パス
+- name: configure / enviroment path
+  lineinfile:
+    dest: ~/.profile
+    state: present
+    line: export PATH=$PATH:~/.composer/vendor/bin
